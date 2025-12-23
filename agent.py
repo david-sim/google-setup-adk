@@ -75,10 +75,10 @@ def get_current_time(city: str) -> dict:
         return {"status": "error", "error": str(e), "city": city}
 
 
-# Define the root agent
-root_agent = LlmAgent(
+# Define the timezone agent
+timezone_agent = LlmAgent(
     model='gemini-2.0-flash',
-    name='root_agent',
+    name='timezone_agent',
     description="A helpful assistant that can provide information and answer questions.",
     instruction=(
         "You are a timezone assistant that is trained in using ZoneInfo and datetime. "
@@ -89,4 +89,9 @@ root_agent = LlmAgent(
 )
 
 # Export a list named `agents` for ADK discovery (ADK looks for an `agents` iterable)
-agents = [root_agent]
+agents = [timezone_agent]
+
+# Backwards-compatible alias expected by the ADK loader.
+# The loader looks for a `root_agent` (or `app`) symbol.
+root_agent = timezone_agent
+app = timezone_agent
