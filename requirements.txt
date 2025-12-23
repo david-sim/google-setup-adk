@@ -1,0 +1,4 @@
+# Google ADK Dependencies
+# Install with: pip install -r requirements.txt
+
+google-adk
